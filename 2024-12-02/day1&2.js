@@ -7,6 +7,7 @@
 // The element 1 occurs at the indices 0 and 3.
 let containDuplicate = function (nums) {
   let newArray = new Set(nums);
+  // set() use .size not .length
   if (newArray.size !== nums.length) {
     return true;
   }
