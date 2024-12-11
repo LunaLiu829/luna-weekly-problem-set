@@ -19,39 +19,43 @@
 // Output: true
 // ")(" return false;
 const isValid = (s) => {
-  //   if (s.length % 2 === 0) {
-  //     if (s.includes("(") && s.includes(")") && s.indexOf("(") < s.indexOf(")")) {
-  //       return true;
-  //     } else if (
-  //       s.includes("{") &&
-  //       s.includes("}") &&
-  //       s.indexOf("{") < s.indexOf("}")
-  //     ) {
-  //       return true;
-  //     } else if (
-  //       s.includes("[") &&
-  //       s.includes("]") &&
-  //       s.indexOf("[") < s.indexOf("]")
-  //     ) {
-  //       return true;
-  //     } else return false;
-  //   } else {
-  //     return false;
-  //   }
   const stack = [];
-  let closeToOpen = {
-    "(": ")",
-    "{": "}",
-    "[": "]",
+  const bracketMap = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
   };
+
   for (let char of s) {
-    if (closeToOpen[char]) {
-      stack.push(closeToOpen[char]);
-    } else {
-      if (stack.pop() !== char) return false;
+    if (char === "(" || char === "{" || char === "[") {
+      stack.push(char); // Push opening brackets to the stack
+    } else if (char === ")" || char === "}" || char === "]") {
+      // Check if the stack top matches the current closing bracket
+      if (stack.pop() !== bracketMap[char]) {
+        return false;
+      }
     }
   }
-  return !stack.length;
+
+  // If the stack is empty, all brackets are matched
+  return stack.length === 0;
+
+  //   const stack = [];
+  //   let closeToOpen = {
+  //     "(": ")",
+  //     "{": "}",
+  //     "[": "]",
+  //   };
+  //   for (let char of s) {
+  //     if (closeToOpen[char]) {
+  //       stack.push(closeToOpen[char]); // Push closing brackets to the stack
+  //     } else {
+  //       // Check if the stack top matches the current closing bracket
+  //       if (stack.pop() !== char) return false;
+  //     }
+  //   }
+  //   // If the stack is empty, all brackets are matched
+  //   return !stack.length;
 };
 
 // console.log(isValid("()"));
