@@ -14,7 +14,6 @@ const groupAngrams = (strs) => {
   for (let str of strs) {
     //sort the string by each character
     let newString = str.split("").sort().join("");
-    // array.push(str);
     if (!result.has(newString)) {
       result.set(newString, Array.isArray(str) ? str : [str]);
     } else {
@@ -25,6 +24,18 @@ const groupAngrams = (strs) => {
   }
   const valuesArray = [...result.values()];
   return valuesArray;
+
+  //another solution:
+  //     let result  = {};
+  //     for (let str of strs) {
+  //     if (!result[newString]) {
+  //       result[newString] = [str];
+  //     } else {
+  //       result[newString].push(str);
+  //     }
+  //   }
+  //     }
+  //   return Object.values(result);
 };
 console.log(groupAngrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 console.log(groupAngrams([""]));
