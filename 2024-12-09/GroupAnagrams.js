@@ -28,13 +28,13 @@ const groupAngrams = (strs) => {
   //another solution:
   //     let result  = {};
   //     for (let str of strs) {
+  // let newString = str.split("").sort().join("");
   //     if (!result[newString]) {
   //       result[newString] = [str];
   //     } else {
   //       result[newString].push(str);
   //     }
   //   }
-  //     }
   //   return Object.values(result);
 };
 console.log(groupAngrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
